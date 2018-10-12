@@ -26,4 +26,4 @@ updateMaxToWin = a => {
   maxToWin = a;
   document.getElementById("firstAt").innerHTML = maxToWin;
 }
-
+  
