@@ -12,6 +12,10 @@ listOfPossibleMoveAndWhatTheyBeat = {"PIERRE" : "CISEAUX", "FEUILLE" : "PIERRE",
 maxToWin = 5
 nbOfBaseCase = 5;
 
+html_textZone = document.getElementById("text");
+setDisplay = txt => document.getElementById("text").innerHTML = txt;
+addToDisplay = txt => document.getElementById("text").innerHTML += txt;
+
 bg = {
   path : "src/",
   basicMap : "blanc.png",
@@ -46,13 +50,13 @@ fight = (p1, p2) => {
 isFighting = false;
 isQuestionningWhoWin = false
 startFight = () => {
-  console.log("StartFight !!!")
+  setDisplay("StartFight !!!");
   if(!isFighting){
     isFighting = true;
     countdown(3000, ()=>{
       isFighting = false
       isQuestionningWhoWin = true;
-      console.log( "Who win ?" );
+      setDisplay( "Who win ?" );
     })
   }
 }
@@ -60,10 +64,12 @@ startFight = () => {
 countdown = (timer, callback) => {
     document.getElementById("clickPanel").style.display = "None"
     var countDownDate = new Date().getTime() + timer;
+    addToDisplay(".  next in " + Math.ceil(timer/1000) + ", ")
     var theFinalCountDown = setInterval(function() {
 
+
       var distance = countDownDate - new Date().getTime();
-      console.log( Math.ceil(distance/1000))
+      addToDisplay( Math.ceil(distance/1000) + ", ")
       // If the count down is finished, write some text 
       if (distance < 0) {
         clearInterval(theFinalCountDown);
@@ -78,26 +84,45 @@ updateMaxToWin = a => {
   document.getElementById("firstAt").innerHTML = maxToWin;
 }
 
+updateScore = ()=>document.getElementById("score").innerHTML = game.score[0] + " - " + game.score[1]
+resetPosition = ()=>{
+  game.pos_p1 = 0;
+  game.pos_p2 = game.nbOfCase-1
+  countdown(5000, ()=>setDisplay("Let's go !!"))
+}
+
+
 isVictory = ()=> {
   let isVictory = false;
   if(game.pos_p1 > game.nbOfCase - nbOfBaseCase -1){
-    console.log("player1 win the round")
+    setDisplay("player1 win the round")
     game.score[0] ++ ;
     isVictory = true;
   }
   if(game.pos_p2 < nbOfBaseCase){
-    console.log("player2 win the round")
+    setDisplay("player2 win the round")
     game.score[1] ++ ;
     isVictory = true;
   }
 
+  if(isVictory){
+    updateScore()
+    resetPosition()
+  }
+
+
   if(game.score[0] >= maxToWin ){
-    console.log("Victory of Player 1")
+    setDisplay("Victory of Player 1")
+    countdown(3000, ()=>setDisplay("click on New Game to restart"))
   }
 
   if(game.score[1] >= maxToWin ){
-    console.log("Victory of Player 2")
+    setDisplay("Victory of Player 2")
+    countdown(3000, ()=>setDisplay("click on New Game to restart"))
   }
+
+
+
 }
 
 getElementToAdd = a => {
@@ -162,8 +187,9 @@ moveP1 = () => {
   }else if(isQuestionningWhoWin){
     isQuestionningWhoWin = false;
     game.pos_p2 = game.nbOfCase -1
+    countdown(3000, ()=>setDisplay("Let's go !!!"))
   }else{
-    player1.nbOfClick ++;
+    player1.nbOfClick ++; 
     game.pos_p1 ++;
     isVictory()
   }
@@ -178,6 +204,7 @@ moveP2 = () => {
   }else if(isQuestionningWhoWin){
     isQuestionningWhoWin = false;
     game.pos_p1 = 0
+    countdown(3000, ()=>setDisplay("Let's go !!!"))
   }else {
     player2.nbOfClick ++;
     game.pos_p2 --;
@@ -188,5 +215,6 @@ moveP2 = () => {
   //console.log("player position : " + game.pos_p1 + " - " + game.pos_p2)
 } 
 
-
+setDisplay("Let's go !!!")
 updateGrille()
+updateScore()
