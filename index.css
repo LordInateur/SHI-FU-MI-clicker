@@ -21,14 +21,29 @@
 }
 
 @media screen and (min-width: 768px) {
+  .carte {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-
-
+  .cellule {
+    display: inline-block;
+  }
 
   #player1_clicZone, #player2_clicZone {
     height: 100%;
     width: 49%;
     display: inline-block;
   }
-
 } 
+
+@media (max-width: 767.98px) {
+  .cellule {
+    display: block;
+  }
+  .carte {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
