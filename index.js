@@ -28,9 +28,9 @@ bg = {
 }
 
 game = {
-  nbOfCase : 60,
+  nbOfCase : 40,
   pos_p1 : 0,
-  pos_p2 : 59,
+  pos_p2 : 39,
   grille : [],
   score : [0,0]
 }
