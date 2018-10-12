@@ -12,9 +12,18 @@ listOfPossibleMoveAndWhatTheyBeat = {"PIERRE" : "CISEAUX", "FEUILLE" : "PIERRE",
 maxToWin = 5
 nbOfBaseCase = 5;
 
-html_textZone = document.getElementById("text");
-setDisplay = txt => document.getElementById("text").innerHTML = txt;
+
+setCompteur = txt => document.getElementById("compteur").innerHTML = txt;
+addToCompeur = txt => document.getElementById("compteur").innerHTML += txt;
+
+setDisplay = txt => {
+  document.getElementById("text").innerHTML = txt;
+  setCompteur("")
+}
+
 addToDisplay = txt => document.getElementById("text").innerHTML += txt;
+
+compteur
 
 bg = {
   path : "src/",
@@ -70,12 +79,12 @@ startFight = () => {
 countdown = (timer, callback) => {
     document.getElementById("clickPanel").style.display = "None"
     var countDownDate = new Date().getTime() + timer;
-    addToDisplay(".  next in " + Math.ceil(timer/1000) + ", ")
+    setCompteur("Next in " + Math.ceil(timer/1000) + ", ")
     var theFinalCountDown = setInterval(function() {
 
 
       var distance = countDownDate - new Date().getTime();
-      addToDisplay( Math.ceil(distance/1000) + ", ")
+      addToCompeur( Math.ceil(distance/1000) + ", ")
       // If the count down is finished, write some text 
       if (distance < 0) {
         clearInterval(theFinalCountDown);
@@ -114,6 +123,7 @@ isVictory = ()=> {
   if(isVictory){
     updateScore()
     resetPosition()
+    setDisplay("Score : " + game.score[0] + " - " + game.score[1])
   }
 
 
