@@ -26,11 +26,21 @@
     display: flex;
     align-items: center;
   }
+
   .carte {
     display: flex;
     /* justify-content: center;
     align-items: center; */
-    vertical-align: baseline;
+    /* vertical-align: baseline; */
+  }
+
+  #text {
+    font-size: 50px;
+    position: absolute;
+    top: 30%;
+    left: 50%;; 
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
   }
 
   .cellule {
@@ -48,8 +58,18 @@
   .cellule {
     display: block;
   }
+
   .carte {
     display: block;
     text-align: center;
+  }
+
+  #text {
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;; 
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
   }
 }
