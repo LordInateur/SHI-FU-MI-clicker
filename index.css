@@ -4,6 +4,7 @@
   left: 0;
   width: 100%;
   height: calc( 100% - 55px );
+  z-index: 10;
 }
 
 #player1_clicZone, #player2_clicZone {
@@ -18,3 +19,7 @@
 #player2_clicZone {
   background-color: rgba( 255, 0, 0, 0.1 );
 }
+
+@media screen and (min-width: 768px) {
+
+} 
