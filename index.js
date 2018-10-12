@@ -77,7 +77,7 @@ startFight = () => {
 }
 
 countdown = (timer, callback) => {
-    document.getElementById("clickPanel").style.display = "None"
+    document.getElementById("clickPanel").style.display = "None";
     var countDownDate = new Date().getTime() + timer;
     setCompteur("Next in " + Math.ceil(timer/1000) + ", ")
     var theFinalCountDown = setInterval(function() {
@@ -88,7 +88,7 @@ countdown = (timer, callback) => {
       // If the count down is finished, write some text 
       if (distance < 0) {
         clearInterval(theFinalCountDown);
-        document.getElementById("clickPanel").style.display = "block"
+        document.getElementById("clickPanel").style.display = "block";
         callback()
       }
     }, 1000);
@@ -137,16 +137,44 @@ isVictory = ()=> {
     countdown(3000, ()=>setDisplay("click on New Game to restart"))
   }
 
-
-
 }
+
+window.addEventListener("keydown", function (event) {
+  if (event.defaultPrevented) {
+    return; // Do nothing if the event was already processed
+  }
+
+  if(document.getElementById("clickPanel").style.display != "none"){
+    switch (event.key) {
+      case "ArrowDown":
+        // code for "down arrow" key press.
+        break;
+      case "ArrowUp":
+        // code for "up arrow" key press.
+        break;
+      case "q":
+        // code for "left arrow" key press.
+        moveP1()
+        break;
+      case "m":
+        // code for "right arrow" key press.
+        moveP2()
+        break;
+      default:
+        return; // Quit when this doesn't handle the key event.
+    }
+  }
+
+  // Cancel the default action to avoid it being handled twice
+  event.preventDefault();
+}, true);
 
 getElementToAdd = a => {
   return "<div class=\"cellule\"><img src=\"./" +a+ "\" class=\"border-bottom border-right\"/></div>"
 }
 
 updateGrille = () => {
-  console.log("updateGrille")
+  //console.log("updateGrille")
 
   for (i = 0 ; i < game.nbOfCase ; i++){
 
