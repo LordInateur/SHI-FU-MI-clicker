@@ -31,13 +31,19 @@ bg = {
   player2OnEnemyBase : "rouge-bleu.png"
 }
 
-game = {
-  nbOfCase : 40,
-  pos_p1 : 0,
-  pos_p2 : 39,
-  grille : [],
-  score : [0,0]
+newGame = ()=>{
+  game = {
+    nbOfCase : 40,
+    pos_p1 : 0,
+    pos_p2 : 39,
+    grille : [],
+    score : [0,0]
+  }
+  updateGrille()
+  updateScore()
 }
+
+game = {}
 
 // 1 : p1 win, 0 : draw, -1 : p1 lose
 fight = (p1, p2) => {
@@ -215,6 +221,7 @@ moveP2 = () => {
   //console.log("player position : " + game.pos_p1 + " - " + game.pos_p2)
 } 
 
-setDisplay("Let's go !!!")
+newGame()
 updateGrille()
 updateScore()
+setDisplay("Let's go !!!")
