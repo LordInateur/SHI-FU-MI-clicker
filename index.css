@@ -33,7 +33,7 @@
 
   #player1_clicZone, #player2_clicZone {
     height: 100%;
-    width: 49%;
+    width: 50%;
     display: inline-block;
   }
 } 
